@@ -18,6 +18,9 @@ public class ServerApplication {
         System.setProperty("JWT_SECRET", dotenv.get("JWT_SECRET"));
         System.setProperty("EXPIRATIONMS", dotenv.get("EXPIRATIONMS"));
         System.setProperty("CLIENT_ID_GOOGLE", dotenv.get("CLIENT_ID_GOOGLE"));
+		System.setProperty("CLOUDINARY_CLOUD_NAME", dotenv.get("CLOUDINARY_CLOUD_NAME"));
+		System.setProperty("CLOUDINARY_API_KEY", dotenv.get("CLOUDINARY_API_KEY"));
+		System.setProperty("CLOUDINARY_API_SECRET", dotenv.get("CLOUDINARY_API_SECRET"));
 
 		SpringApplication.run(ServerApplication.class, args);
 	}
