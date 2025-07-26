@@ -18,11 +18,7 @@ import com.anastassow.server.repository.UserRepository;
 import com.anastassow.server.service.UserService;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
-import com.google.api.client.googleapis.util.Utils;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.util.Value;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Service
