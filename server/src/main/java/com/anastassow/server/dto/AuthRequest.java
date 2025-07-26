@@ -1,0 +1,12 @@
+package com.anastassow.server.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class AuthRequest {
+    public String email;
+    public String username;
+    public String password;
+}
