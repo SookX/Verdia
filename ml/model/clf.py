@@ -3,6 +3,16 @@ import torch.nn as nn
 from torchvision.models import vit_b_16
 
 class Classifier(nn.Module):
+    """
+    Vision Transformer (ViT) based image classification model.
+
+    This model uses a pre-trained ViT-B/16 backbone from torchvision and replaces
+    the final classification head to match the desired number of output classes.
+
+    Args:
+        num_classes (int): Number of output classes for classification. Default is 39.
+    """
+    
     def __init__(self, num_classes = 39):
         super().__init__()
         self.model = vit_b_16(weights='IMAGENET1K_V1')
