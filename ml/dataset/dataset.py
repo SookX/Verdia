@@ -59,6 +59,7 @@ class PlantVillage(Dataset):
 # Define data augmentation and preprocessing pipeline
 transforms = v2.Compose([
     v2.ToImage(),
+    v2.RandomResizedCrop(size=224, scale=(0.8, 1.0)), 
     v2.RandomHorizontalFlip(p=0.5), 
     v2.RandomRotation(degrees=15),
     v2.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
