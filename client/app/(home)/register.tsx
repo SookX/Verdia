@@ -1,15 +1,20 @@
 import React from 'react'
 import AccountPage from '@/components/AccountPage'
 
-const Login = () => {
+const Register = () => {
   return (
     <AccountPage
-        title="Welcome back!"
-        text="Enter your credentials."
+        title="Welcome!"
+        text="Get started with Verdia today."
         inputs={[
             {
                 label: "Email",
                 placeholder: "Email",
+                color: "primary-400"
+            },
+            {
+                label: "Username",
+                placeholder: "Username",
                 color: "primary-400"
             },
             {
@@ -18,15 +23,15 @@ const Login = () => {
                 color: "primary-400"
             }
         ]}
-        forgotPass={true}
-        buttonLabel="Sign in"
+        forgotPass={false}
+        buttonLabel="Sign up"
         link={{
-            text: "New to Verdia?",
-            label: "Sign up.",
-            link: "/register"
+            text: "Already have an account?",
+            label: "Sign in.",
+            link: "/login"
         }}
     />
   )
 }
 
-export default Login
+export default Register

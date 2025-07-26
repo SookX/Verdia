@@ -3,24 +3,30 @@ import React, { useEffect } from 'react'
 
 interface InputProps {
     label: string,
-    placeholder: string,
+    placeholder?: string,
     color: string,
     password?: boolean
 }
 
 const InputField = ({ label, placeholder, color, password } : InputProps) => {
+    const colorMap: Record<string, string> = {
+        "primary-400": "border-primary-400"
+    }
 
-  return (
-    <View>
-        <Text className='text-sm px-4 text-neutral-300'>{label}</Text>
+    const borderColor = colorMap[color] || "border-primary-400"
+    const textColor = colorMap[color] || "color-primary-400"
 
-        <TextInput
-            placeholder={placeholder}
-            className={`border rounded-full px-4 bg-neutral-700 border-${color}`}
-            secureTextEntry={password || false}
-        />
-    </View>
-  )
+    return (
+        <View className='mb-4'>
+            <Text className='text-sm px-4 mb-1 text-neutral-300'>{label}</Text>
+
+            <TextInput
+                // placeholder={placeholder}
+                className={`border ${borderColor} rounded-full px-4 ${textColor}`}
+                secureTextEntry={password || false}
+            />
+        </View>
+    )
 }
 
 export default InputField

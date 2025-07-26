@@ -9,11 +9,17 @@ interface ButtonInterface {
 }
 
 const Button = ({ color, label, styling, onPress } : ButtonInterface) => {
-  return (
-    <TouchableOpacity onPress={onPress} className={`py-3 px-6 rounded-full bg-${color} ${styling ? styling : ""}`}>
-        <Text className='text-xl text-light-100 text-center uppercase font-bold'>{label}</Text>
-    </TouchableOpacity>
-  )
+    const colorMap: Record<string, string> = {
+        "primary-500": "bg-primary-500"
+    }
+
+    const bgColor = colorMap[color] || "bg-primary-100"
+
+    return (
+        <TouchableOpacity onPress={onPress} className={`py-3 px-6 rounded-full ${bgColor} ${styling ? styling : ""}`}>
+            <Text className='text-xl text-light-100 text-center uppercase font-bold'>{label}</Text>
+        </TouchableOpacity>
+    )
 }
 
 export default Button
