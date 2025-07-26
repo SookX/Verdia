@@ -1,7 +1,7 @@
 import torch
 from torch.utils.data import Dataset
-from data_downloader import load_dataset
-from data_preprocessing import get_image, idx_to_class
+from .data_downloader import load_dataset
+from .data_preprocessing import get_image, idx_to_class
 from torchvision.transforms import v2
 
 class PlantVillage(Dataset):
@@ -50,24 +50,14 @@ class PlantVillage(Dataset):
         """
         image, label_idx, label_name = get_image(self.ds, index, self.idx_to_class)
         image = torch.from_numpy(image).permute(2, 0, 1)
-        label_idx = torch.asarray(label_idx)
+        label_idx = torch.asarray(label_idx).long()
         if self.transforms:
             image = self.transforms(image)
         return image, label_idx, label_name
 
 
-# Define data augmentation and preprocessing pipeline
-transforms = v2.Compose([
-    v2.ToImage(),
-    v2.RandomResizedCrop(size=224, scale=(0.8, 1.0)), 
-    v2.RandomHorizontalFlip(p=0.5), 
-    v2.RandomRotation(degrees=15),
-    v2.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
-    v2.ToDtype(torch.float32, scale=True),
-    v2.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-])
 
 if __name__ == "__main__":
-    dataset = PlantVillage("./dist/", transforms)
+    dataset = PlantVillage("./dist/")
     image, label_idx, label_name = dataset[0]
     print(image.shape)

@@ -1,7 +1,7 @@
 import os
 import random
 import matplotlib.pyplot as plt
-from data_downloader import load_dataset
+from .data_downloader import load_dataset
 
 def idx_to_class(dataset):
     """
@@ -60,4 +60,5 @@ if __name__ == "__main__":
     saved_path = "./dist/"
     ds = load_dataset(saved_path)
     classes = idx_to_class(ds)
+    print(classes)
     plot_random_sample(ds, classes)
