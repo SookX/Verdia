@@ -107,10 +107,8 @@ public class UserServiceImpl implements UserService {
         try {
             GoogleIdToken idToken = verifier.verify(idTokenString);
             if (idToken == null) {
-                System.out.println("Google ID token verification failed: token is null");
                 return null;
             }
-            System.out.println("Google ID token verified successfully");
             return idToken.getPayload();
         } catch (Exception e) {
             e.printStackTrace();
