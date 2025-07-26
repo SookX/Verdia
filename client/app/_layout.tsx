@@ -24,7 +24,6 @@ export default function RootLayout() {
     <>
       <Stack>
         <Stack.Screen name="(home)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
       </Stack>
     </>
   );

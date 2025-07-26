@@ -1,7 +1,8 @@
+import Button from '@/components/Button';
 import { images } from '@/constants/images';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
-import { Button, ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function HomeScreen() {
   const router = useRouter()
@@ -19,11 +20,7 @@ export default function HomeScreen() {
           <Text className='text-2xl text-center text-light-200'>Keeping your plants safe today.</Text>
         </View>
 
-        <TouchableOpacity className='w-full mb-3' onPress={() => router.push("/login")}>
-          <View className='w-full py-3 px-6 rounded-full bg-primary-500'>
-            <Text className='text-xl text-light-100 text-center uppercase font-bold'>Sign In</Text>
-          </View>
-        </TouchableOpacity>
+        <Button styling='w-full mb-3' onPress={() => router.push("/login")} color="primary-500" label='Sign in'/>
         <Text className='text-lg text-light-100 text-center font-bold italic'>Create an account</Text>
       </View>
       </ImageBackground>
