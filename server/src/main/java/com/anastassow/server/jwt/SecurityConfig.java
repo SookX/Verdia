@@ -44,7 +44,7 @@ public class SecurityConfig {
             .cors(withDefaults())
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/login", "/auth/register", "/ws/chat**", "/auth/google").permitAll()
+                .requestMatchers("/api/auth/login", "/api/auth/register", "/ws/chat**", "/auth/google").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(session ->
