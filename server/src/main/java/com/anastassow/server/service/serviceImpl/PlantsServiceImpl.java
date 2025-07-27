@@ -1,7 +1,10 @@
 package com.anastassow.server.service.serviceImpl;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,5 +66,17 @@ public class PlantsServiceImpl implements PlantsService{
         } catch (IOException e) {
             throw new RuntimeException("Failed to upload image", e);
         }
+    }
+
+    @Override
+    public List<PlantsDto> getAllPlantsForUser(String token) {
+        Long userId = jwtUtils.getIdFromToken(token);
+
+        User user = userRepo.findById(userId)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+
+        List<Plants> plants = plantsRepo.findAllByUser(user);
+
+        return plants.stream().map((plant) -> PlantMapper.plantMapperToDto(plant)).collect(Collectors.toList());
     }
 }

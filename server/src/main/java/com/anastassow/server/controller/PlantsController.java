@@ -1,7 +1,10 @@
 package com.anastassow.server.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,5 +38,14 @@ public class PlantsController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Image upload failed: " + e.getMessage());
         }
+    }
+
+    @GetMapping("")
+    public ResponseEntity<?> getAllPlants(@RequestHeader("Authorization") String authHeader) {
+        String token = userService.extractToken(authHeader);
+
+        List<PlantsDto> plants = plantsService.getAllPlantsForUser(token);
+
+        return ResponseEntity.ok(plants);
     }
 }
