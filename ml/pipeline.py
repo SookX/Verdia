@@ -45,13 +45,11 @@ transforms = v2.Compose([
 
 
 dataset = PlantVillage("./dataset/dist", transforms)
-subset_indices = random.sample(range(len(dataset)), 1000)
-small_dataset = Subset(dataset, subset_indices)
 
-train_dataset, val_dataset = train_val_split(small_dataset)
+train_dataset, val_dataset = train_val_split(dataset)
 
-train_dataloader = DataLoader(small_dataset, BATCH_SIZE, True, num_workers=2)
-val_dataloader = DataLoader(small_dataset, BATCH_SIZE, False, num_workers=2)
+train_dataloader = DataLoader(train_dataset, BATCH_SIZE, True, num_workers=0)
+val_dataloader = DataLoader(val_dataset, BATCH_SIZE, False, num_workers=0)
 print("[INFO] All data loaders have been successfully initialized.")
 
 model = Classifier(len(dataset.idx_to_class)).to(DEVICE)
