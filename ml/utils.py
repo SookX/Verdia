@@ -30,6 +30,16 @@ def load_config(config_path="config.yaml"):
         config = yaml.safe_load(f)
     return config
 
+def load_model(model, model_name, infernce_mode = True, device='cpu'):
+    checkpoint = torch.load(model_name, map_location=device, weights_only= False)
+    model.load_state_dict(checkpoint['model_state_dict'])
+
+    if infernce_mode == True:
+        model.transforms = checkpoint['transforms']
+        model.idx_to_class = checkpoint['idx_to_class']
+    model.to(device)
+    model.eval() 
+
 def train_val_split(dataset, val_size=0.2):
     """
     Splits a dataset into training and validation subsets.

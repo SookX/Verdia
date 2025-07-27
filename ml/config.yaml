@@ -2,8 +2,8 @@ model:
   model_name: "plant-village-v_b16-finetuned" 
 
 training:
-  epochs: 10
-  batch_size: 8
+  epochs: 5
+  batch_size: 16
   learning_rate: 3e-4
 
 logging:

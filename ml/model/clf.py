@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 from torchvision.models import vit_b_16
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 class Classifier(nn.Module):
     """
@@ -25,6 +26,7 @@ class Classifier(nn.Module):
         return self.model(x)
     
     def forward_inference(self, image):
+        self.eval()
         if self.transforms:
             image = self.transforms(image)
         if image.dim() == 3:
@@ -40,13 +42,32 @@ class Classifier(nn.Module):
         if self.idx_to_class:
             pred_class = [self.idx_to_class[idx.item()] for idx in preds]
 
-        return pred_probs, pred_class
+        return pred_probs, preds, pred_class
 
+    def analyze_metrics(self, dataset):
+        self.eval()
+        y_true = []
+        y_pred = []
+        with torch.inference_mode():
+            for image, label, _ in dataset:
+                _, preds, _ = self.forward_inference(image)
+
+            y_true.append(label if isinstance(label, int) else label.item())
+            y_pred.append(preds.item())
+         
+        return {
+            'accuracy': accuracy_score(y_true, y_pred),
+            'precision': precision_score(y_true, y_pred, average='macro', zero_division=0),
+            'recall': recall_score(y_true, y_pred, average='macro', zero_division=0),
+            'f1': f1_score(y_true, y_pred, average='macro', zero_division=0)
+        }
+
+            
 
 
 if __name__ == "__main__":
     model = Classifier()
-    x = torch.rand( 3, 224, 224)
+    x = torch.rand(3, 224, 224)
     y = model(x)
     y = model.forward_inference(x)
     pytorch_total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)

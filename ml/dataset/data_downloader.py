@@ -8,7 +8,6 @@ def download_dataset(path_to_save):
     Parameters:
         path_to_save (str): Local directory where the dataset should be saved.
     """
-    os.makedirs(path_to_save, exist_ok=True)
     deeplake.deepcopy("hub://activeloop/plantvillage-without-augmentation", path_to_save)
 
 def load_dataset(path_to_save):
@@ -26,6 +25,6 @@ def load_dataset(path_to_save):
 
 if __name__ == '__main__':
     path_to_save = "./dist/"
-    # download_dataset(path_to_save)
+    download_dataset(path_to_save)
 
 
