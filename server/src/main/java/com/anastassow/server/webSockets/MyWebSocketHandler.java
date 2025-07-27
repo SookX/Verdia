@@ -72,10 +72,7 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
     private String simulateFastApiResponse(User user, Plants plant, String question) {
         return """
             {
-                "leafName": "Rose Leaf",
-                "modelPrediction": "Powdery Mildew",
-                "howConfident": "92%",
-                "description": "Powdery mildew is a fungal disease that affects a wide range of plants. It looks like white powdery spots on the leaves and stems."
+                de da znam
             }
         """;
     }
