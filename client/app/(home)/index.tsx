@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
 import { images } from '@/constants/images';
-import { useRouter } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import { ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 
 export default function HomeScreen() {
@@ -30,7 +30,7 @@ export default function HomeScreen() {
         </View>
 
         <Button styling='w-full mb-3' onPress={() => router.push("/login")} color="primary-500" label='Sign in'/>
-        <Text className='text-lg text-light-100 text-center font-bold italic'>Create an account</Text>
+        <Link href="/register" className='text-lg text-light-100 text-center font-bold italic'>Create an account</Link>
       </View>
     </ImageBackground>
   );

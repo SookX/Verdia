@@ -22,7 +22,7 @@ const InputField = ({ label, placeholder, color, password } : InputProps) => {
 
             <TextInput
                 // placeholder={placeholder}
-                className={`border ${borderColor} rounded-full px-4 ${textColor}`}
+                className={`border ${borderColor} rounded-full px-4 py-3 ${textColor}`}
                 secureTextEntry={password || false}
             />
         </View>

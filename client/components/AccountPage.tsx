@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity, FlatList } from 'react-native'
+import { Image, StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity, FlatList, ScrollView } from 'react-native'
 import React from 'react'
 import { images } from '@/constants/images'
 import InputField from '@/components/InputField'
@@ -32,7 +32,7 @@ const AccountPage = ({ title, text, inputs, forgotPass, buttonLabel, link }: Acc
             resizeMode='contain'
         />
 
-        <View className='flex-1 w-full h-full py-16 px-6 bg-white mt-64 rounded-t-[30px] justify-start'>
+        <ScrollView className='flex-1 w-full h-full py-16 px-6 bg-white mt-64 rounded-t-[30px]'>
             <View>
                 <Text className='text-primary-100 text-5xl text-center font-bold mb-1'>{title}</Text>
                 <Text className='text-xl text-neutral-600 text-center mb-12'>{text}</Text>
@@ -62,7 +62,7 @@ const AccountPage = ({ title, text, inputs, forgotPass, buttonLabel, link }: Acc
                     <Link href={link.link} className='text-primary-100 font-bold'>{link.label}</Link>
                 </View>
             </View>
-        </View>
+        </ScrollView>
     </ImageBackground>
   )
 }
