@@ -5,12 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class PlantsDto {
-    private Long id;
-    private String imageUrl;
-    private Long userId;
+@NoArgsConstructor
+public class PlantPredictionResponse {
     private String leafName;
     private String modelPrediction;
     private String howConfident;

@@ -30,7 +30,7 @@ public class PlantsController {
     @PostMapping("")
     public ResponseEntity<?> uploadImage(@RequestParam("file") MultipartFile file, @RequestHeader("Authorization") String authHeader) {
         String token = userService.extractToken(authHeader);
-        
+            
         try {
             PlantsDto plant = plantsService.uploadPlant(file, token);
             return ResponseEntity.ok(plant);

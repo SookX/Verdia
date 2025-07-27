@@ -9,7 +9,11 @@ public class PlantMapper {
         return new PlantsDto(
             plant.getId(),
             plant.getImageUrl(),
-            plant.getUser().getId()
+            plant.getUser().getId(),
+            plant.getLeafName(),
+            plant.getModelPrediction(),
+            plant.getHowConfident(),
+            plant.getDescription()
         );
     }
 }
