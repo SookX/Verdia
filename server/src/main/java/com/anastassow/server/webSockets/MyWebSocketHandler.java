@@ -72,7 +72,7 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
     private String simulateFastApiResponse(User user, Plants plant, String question) {
         return """
             {
-                de da znam
+                For fungal infections like black spot, you may see improvement in 5 to 7 days, with full recovery in 2 to 4 weeks if treated properly. Powdery mildew may improve in 3 to 5 days and fully heal in about 2 to 3 weeks. Pest infestations, such as aphids, can show improvement within 2 to 3 days and may be resolved in 1 to 2 weeks. Rust infections usually start improving in about a week and may take 3 to 4 weeks to fully clear.Recovery can be sped up by pruning affected leaves, applying the appropriate fungicide or insecticide, improving air circulation, watering at the base of the plant, and keeping the soil healthy with mulch and nutrients.
             }
         """;
     }

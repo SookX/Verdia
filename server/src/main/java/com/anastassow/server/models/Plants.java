@@ -1,5 +1,6 @@
 package com.anastassow.server.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,11 +31,15 @@ public class Plants {
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
+    @Column(length = 1000)
     private String leafName;
 
+    @Column(length = 1000)
     private String modelPrediction;
 
+    @Column(length = 1000)
     private String howConfident;
 
+    @Column(length = 10000)
     private String description;
 }

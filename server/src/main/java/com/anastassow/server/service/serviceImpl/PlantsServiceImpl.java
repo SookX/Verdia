@@ -65,10 +65,10 @@ public class PlantsServiceImpl implements PlantsService{
             //         .block();
 
             PlantPredictionResponse prediction = new PlantPredictionResponse(
-                "test",
-                "test",
-                "test",
-                "test"
+                "Rose",
+                "Infected",
+                "100%",
+                "Identify the infection by checking for black spots, powdery mildew, rust, or pests. Prune and remove affected leaves and stems. Clean the plant by rinsing with water. Apply appropriate fungicide or insecticide following instructions. Improve air circulation by trimming nearby plants. Water at the base, avoiding wetting the leaves. Maintain healthy soil with mulch and fertilizer"
             );
 
             Plants plant = Plants.builder()
