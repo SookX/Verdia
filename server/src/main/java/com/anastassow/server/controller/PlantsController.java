@@ -18,7 +18,7 @@ import com.anastassow.server.service.PlantsService;
 import com.anastassow.server.service.UserService;
 
 @RestController
-@RequestMapping("/plant")
+@RequestMapping("api/plant")
 public class PlantsController {
     
     @Autowired
