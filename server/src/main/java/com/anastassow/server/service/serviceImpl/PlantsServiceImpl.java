@@ -79,4 +79,12 @@ public class PlantsServiceImpl implements PlantsService{
 
         return plants.stream().map((plant) -> PlantMapper.plantMapperToDto(plant)).collect(Collectors.toList());
     }
+
+    @Override
+    public PlantsDto getPlantById(Long id) {
+        
+        Plants plant = plantsRepo.findById(id).orElseThrow(() -> new RuntimeException("Plant not found"));
+
+        return PlantMapper.plantMapperToDto(plant);
+    }
 }

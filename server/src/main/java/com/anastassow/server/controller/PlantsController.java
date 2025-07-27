@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,5 +48,15 @@ public class PlantsController {
         List<PlantsDto> plants = plantsService.getAllPlantsForUser(token);
 
         return ResponseEntity.ok(plants);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getPlantById(@PathVariable("id") Long plantId) {
+        try{
+            PlantsDto plant = plantsService.getPlantById(plantId);
+            return ResponseEntity.ok(plant);
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }
