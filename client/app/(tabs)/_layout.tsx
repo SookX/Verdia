@@ -8,6 +8,14 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <Tabs></Tabs>
+    <Tabs>
+      <Tabs.Screen
+        name='camera'
+        options={{
+          title: "Camera",
+          headerShown: false
+        }}
+      />
+    </Tabs>
   );
 }

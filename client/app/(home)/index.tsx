@@ -31,6 +31,7 @@ export default function HomeScreen() {
 
         <Button styling='w-full mb-3' onPress={() => router.push("/login")} color="primary-500" label='Sign in'/>
         <Link href="/register" className='text-lg text-light-100 text-center font-bold italic'>Create an account</Link>
+        <Link href="/camera" className='text-lg text-light-100 text-center font-bold italic'>CAMERA</Link>
       </View>
     </ImageBackground>
   );
