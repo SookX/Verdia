@@ -1,32 +1,29 @@
 import React, { useState } from 'react'
 import AccountPage from '@/components/AccountPage'
 import { crud } from '@/api/crud'
-import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useRouter } from 'expo-router'
 
 const Register = () => {
-    const handleSubmit = async () => {
-        // const response = await crud({
-        //     url: "/auth/register",
-        //     method: "post",
-        //     body: {
-        //         email,
-        //         username,
-        //         password
-        //     }
-        // })
-        console.log("Vlizma li")
+    const router = useRouter()
 
-        try {
-            const response = await axios.post('http://localhost:8080/api/auth/register', {
+    const handleSubmit = async () => {
+        const response = await crud({
+            url: "/auth/register",
+            method: "post",
+            body: {
                 email,
                 username,
                 password
-            })
-            console.log(JSON.parse(JSON.stringify(response)))
-        } catch(err) {
-            console.log(JSON.parse(JSON.stringify(err)))
-        }
+            }
+        })
 
+        console.log(JSON.stringify(response))
+
+        if(response?.status == 200) {
+            await AsyncStorage.setItem('access', response?.data?.token)
+            router.push('/camera')
+        }
     }
 
 
@@ -61,6 +58,7 @@ const Register = () => {
                     label: "Password",
                     placeholder: "Password",
                     color: "primary-400",
+                    password: true,
                     value: password,
                     setValue: setPassword,
                 }

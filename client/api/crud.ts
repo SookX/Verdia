@@ -13,13 +13,10 @@ interface CrudInterface {
 
 // Makes a CRUD operation to the backend server
 export const crud = async ({ url, method, body, headers }: CrudInterface) => {
-    console.log(`BODY`)
-    console.log(body)
     let access = null
     try {
-        const token = await AsyncStorage.getItem('token')
-        const tokenObject = token ? JSON.parse(token) : null
-        access = tokenObject?.access
+        const token = await AsyncStorage.getItem('access')
+        access = token
     } catch(err) {
         console.log(err)
     }

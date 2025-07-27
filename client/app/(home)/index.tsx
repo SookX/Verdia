@@ -1,11 +1,29 @@
 import Button from '@/components/Button';
 import { images } from '@/constants/images';
 import { Link, useRouter } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function HomeScreen() {
   const router = useRouter()
 
+
+  const [loggedIn, setLoggedIn] = useState<boolean>(false)
+  useEffect(() => {
+    const auth = async () => {
+      const token = await AsyncStorage.getItem('access')
+      if(token) setLoggedIn(true)
+    }
+
+    auth()
+  }, [])
+
+
+  const handleLogout = async () => {
+    await AsyncStorage.removeItem('access')
+    setLoggedIn(false)
+  }
 
 
   return (
@@ -31,7 +49,12 @@ export default function HomeScreen() {
 
         <Button styling='w-full mb-3' onPress={() => router.push("/login")} color="primary-500" label='Sign in'/>
         <Link href="/register" className='text-lg text-light-100 text-center font-bold italic'>Create an account</Link>
-        <Link href="/camera" className='text-lg text-light-100 text-center font-bold italic'>CAMERA</Link>
+        <Link href="/camera" className='text-lg text-light-100 text-center font-bold italic mb-3'>CAMERA</Link>
+
+        {
+          loggedIn &&
+          <Button onPress={handleLogout} color='primary-500' label='Log out' />
+        }
       </View>
     </ImageBackground>
   );
