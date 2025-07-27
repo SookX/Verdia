@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.anastassow.server.dto.PlantPredictionResponse;
 import com.anastassow.server.dto.PlantsDto;
 import com.anastassow.server.jwt.JwtUtils;
 import com.anastassow.server.mapper.PlantMapper;
@@ -21,6 +22,7 @@ import com.anastassow.server.service.PlantsService;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
 public class PlantsServiceImpl implements PlantsService{
@@ -53,9 +55,29 @@ public class PlantsServiceImpl implements PlantsService{
 
             String url = (String) uploadResult.get("secure_url");
 
+            WebClient client = WebClient.create("http://localhost");
+
+            // PlantPredictionResponse prediction = client.post()
+            //         .uri("/ask")
+            //         .bodyValue(Map.of("url", url))
+            //         .retrieve()
+            //         .bodyToMono(PlantPredictionResponse.class)
+            //         .block();
+
+            PlantPredictionResponse prediction = new PlantPredictionResponse(
+                "test",
+                "test",
+                "test",
+                "test"
+            );
+
             Plants plant = Plants.builder()
                     .imageUrl(url)
                     .user(user)
+                    .leafName(prediction.getLeafName())
+                    .modelPrediction(prediction.getModelPrediction())
+                    .howConfident(prediction.getHowConfident())
+                    .description(prediction.getDescription())
                     .build();
 
             plantsRepo.save(plant);

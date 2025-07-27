@@ -29,4 +29,12 @@ public class Plants {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
+
+    private String leafName;
+
+    private String modelPrediction;
+
+    private String howConfident;
+
+    private String description;
 }
