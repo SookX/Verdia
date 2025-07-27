@@ -12,6 +12,10 @@ module.exports = {
           500: "#8caa8b",
           600: "#a0b99e"
         },
+        secondary: {
+          100: "#124328",
+          500: "#718e7e"
+        },
         light: {
           100: "#ecf1ec",
           200: "#d9e3d8"

@@ -41,6 +41,12 @@
           "microphonePermission": "Allow Verdia to access your microphone",
           "recordAudioAndroid": false
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Verdia accesses your photos to let you analyze and diagnose your plants."
+        }
       ]
     ],
     "experiments": {
