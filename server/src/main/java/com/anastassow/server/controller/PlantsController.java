@@ -51,9 +51,11 @@ public class PlantsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getPlantById(@PathVariable("id") Long plantId) {
+    public ResponseEntity<?> getPlantById(@PathVariable("id") Long plantId, @RequestHeader("Authorization") String authHeader) {
+        String token = userService.extractToken(authHeader);
+        
         try{
-            PlantsDto plant = plantsService.getPlantById(plantId);
+            PlantsDto plant = plantsService.getPlantById(plantId, token);
             return ResponseEntity.ok(plant);
         } catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());

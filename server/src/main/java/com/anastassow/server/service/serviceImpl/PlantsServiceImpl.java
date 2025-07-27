@@ -81,10 +81,12 @@ public class PlantsServiceImpl implements PlantsService{
     }
 
     @Override
-    public PlantsDto getPlantById(Long id) {
-        
+    public PlantsDto getPlantById(Long id, String token) {
+
         Plants plant = plantsRepo.findById(id).orElseThrow(() -> new RuntimeException("Plant not found"));
 
-        return PlantMapper.plantMapperToDto(plant);
+        if (plant.getUser().getId().equals(jwtUtils.getIdFromToken(token))) {
+            return PlantMapper.plantMapperToDto(plant);
+        } else throw new RuntimeException("Plant is not for the user");
     }
 }
