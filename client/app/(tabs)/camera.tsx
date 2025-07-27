@@ -5,6 +5,7 @@ import { CameraView, CameraType, useCameraPermissions } from 'expo-camera'
 import Button from '@/components/Button'
 import { icons } from '@/constants/icons'
 import * as ImagePicker from 'expo-image-picker'
+import { crud } from '@/api/crud'
 
 const Camera = () => {
     const [facing, setFacing] = useState<CameraType>('front')
@@ -40,6 +41,7 @@ const Camera = () => {
     const takePic = async () => {
         const photo = await cameraRef.current?.takePictureAsync()
         console.log(photo)
+        handleUploadPlant(photo)
     }
 
     const pickImage = async () => {
@@ -49,7 +51,31 @@ const Camera = () => {
             quality: 1,
         });
 
-        console.log(result);
+        // console.log(result);
+        handleUploadPlant(result?.assets[0])
+    }
+
+    const handleUploadPlant = async (image: any) => {
+        const imageFile = await fetch(image.uri);
+        const blob = await imageFile.blob();
+        
+        const fileName = image.fileName || image.uri.split('/').pop() || 'photo.jpg';
+        const fileType = blob._data.type || 'image/jpeg';
+
+        const formData = new FormData();
+        formData.append('file', {
+            uri: image.uri,
+            name: fileName,
+            type: fileType
+        } as any)
+
+        const response = await crud({
+            url: '/plant',
+            method: "post",
+            body: formData
+        })
+
+        console.log(JSON.stringify(response))
     }
 
     return (

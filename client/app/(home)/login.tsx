@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AccountPage from '@/components/AccountPage'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { crud } from '@/api/crud'
@@ -22,7 +22,7 @@ const Login = () => {
 
         if(response?.status == 200) {
             await AsyncStorage.setItem('access', response?.data?.token)
-            router.push('/camera')
+            router.push('/dashboard')
         }
     }
 
@@ -31,6 +31,17 @@ const Login = () => {
     // Holds the state for the form
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
+
+
+
+    useEffect(() => {
+        const auth = async () => {
+            const token = await AsyncStorage.getItem('access')
+            if(token) router.push('/dashboard')
+        }
+
+        auth()
+    }, [])
 
 
 

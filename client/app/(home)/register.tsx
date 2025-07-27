@@ -22,7 +22,7 @@ const Register = () => {
 
         if(response?.status == 200) {
             await AsyncStorage.setItem('access', response?.data?.token)
-            router.push('/camera')
+            router.push('/dashboard')
         }
     }
 

@@ -16,6 +16,13 @@ export default function TabLayout() {
           headerShown: false
         }}
       />
+      <Tabs.Screen
+        name='dashboard'
+        options={{
+          title: "Dashboard",
+          headerShown: false
+        }}
+      />
     </Tabs>
   );
 }
