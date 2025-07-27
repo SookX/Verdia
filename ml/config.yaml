@@ -1,5 +1,5 @@
 model:
-  model_name: "plant-village-v_b16-finetuned" 
+  model_name: "plant-village-effb1-finetuned" 
 
 training:
   epochs: 5
