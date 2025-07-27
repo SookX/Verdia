@@ -25,7 +25,7 @@ public class PlantsController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/upload")
+    @PostMapping("")
     public ResponseEntity<?> uploadImage(@RequestParam("file") MultipartFile file, @RequestHeader("Authorization") String authHeader) {
         String token = userService.extractToken(authHeader);
         
