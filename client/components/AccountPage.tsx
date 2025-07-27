@@ -15,6 +15,7 @@ interface AccountInterface {
         } [],
     forgotPass: boolean,
     buttonLabel: string,
+    handleSubmit?: () => void,
     link: {
         text: string,
         label: string,
@@ -22,7 +23,7 @@ interface AccountInterface {
     }
 }
 
-const AccountPage = ({ title, text, inputs, forgotPass, buttonLabel, link }: AccountInterface) => {
+const AccountPage = ({ title, text, inputs, forgotPass, buttonLabel, handleSubmit, link }: AccountInterface) => {
   return (
     <ImageBackground className='flex-1 w-full justify-center items-center' source={images.home} resizeMode='cover'>
         <View className='flex-1 bg-black opacity-50 absolute z-0 w-full h-full'/>
@@ -55,7 +56,7 @@ const AccountPage = ({ title, text, inputs, forgotPass, buttonLabel, link }: Acc
 
             <View className='mt-auto'>
 
-                <Button color='primary-100' styling='mb-4 w-full' label={buttonLabel} />
+                <Button color='primary-100' styling='mb-4 w-full' label={buttonLabel} onPress={handleSubmit} />
 
                 <View className='flex flex-row justify-center gap-1'>
                     <Text className='text-neutral-400'>{link.text}</Text>
