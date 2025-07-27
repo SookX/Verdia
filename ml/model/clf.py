@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from torchvision.models import vit_b_16
+from torchvision.models import vit_b_16, efficientnet_b1, EfficientNet_B1_Weights
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 class Classifier(nn.Module):
@@ -16,21 +16,20 @@ class Classifier(nn.Module):
 
     def __init__(self, idx_to_class = None, transforms = None, num_classes = 39):
         super().__init__()
-        self.model = vit_b_16(weights='IMAGENET1K_V1')
-        in_features = self.model.heads.head.in_features
-        self.model.heads.head = nn.Linear(in_features, num_classes)
+        self.model =  efficientnet_b1(weights  = EfficientNet_B1_Weights)
+        in_features = self.model.classifier[1].in_features  
+        self.model.classifier[1] = nn.Linear(in_features, num_classes)
         self.idx_to_class = idx_to_class # For inference
         self.transforms = transforms # For inference
     
     def forward(self, x):
         return self.model(x)
     
-    def forward_inference(self, image):
+    def forward_inference(self, image, transforms = None):
         self.eval()
-        if self.transforms:
-            image = self.transforms(image)
-        if image.dim() == 3:
-            image = image.unsqueeze(0)
+        if transforms:
+            image = transforms(image)
+
 
         with torch.inference_mode():
             y = self.forward(image)
