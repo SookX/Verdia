@@ -5,10 +5,12 @@ interface InputProps {
     label: string,
     placeholder?: string,
     color: string,
-    password?: boolean
+    password?: boolean,
+    value?: string,
+    setValue?: () => void
 }
 
-const InputField = ({ label, placeholder, color, password } : InputProps) => {
+const InputField = ({ label, placeholder, color, password, value, setValue } : InputProps) => {
     const colorMap: Record<string, string> = {
         "primary-400": "border-primary-400"
     }
@@ -24,6 +26,8 @@ const InputField = ({ label, placeholder, color, password } : InputProps) => {
                 // placeholder={placeholder}
                 className={`border ${borderColor} rounded-full px-4 py-3 ${textColor}`}
                 secureTextEntry={password || false}
+                value={value ? value : null}
+                onChangeText={setValue ? setValue : null}
             />
         </View>
     )

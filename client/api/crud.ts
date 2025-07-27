@@ -13,6 +13,8 @@ interface CrudInterface {
 
 // Makes a CRUD operation to the backend server
 export const crud = async ({ url, method, body, headers }: CrudInterface) => {
+    console.log(`BODY`)
+    console.log(body)
     let access = null
     try {
         const token = await AsyncStorage.getItem('token')
@@ -38,7 +40,7 @@ export const crud = async ({ url, method, body, headers }: CrudInterface) => {
         } else {
             response = await axios[method](url, body, config);
         }
-
+        
         if(response) return response
     } catch(err) {
         return err

@@ -11,7 +11,9 @@ interface AccountInterface {
     inputs: {
             label: string,
             placeholder?: string,
-            color: string
+            color: string,
+            value?: string,
+            setValue?: () => void
         } [],
     forgotPass: boolean,
     buttonLabel: string,
@@ -47,6 +49,8 @@ const AccountPage = ({ title, text, inputs, forgotPass, buttonLabel, handleSubmi
                             label={item.label}
                             placeholder={item.placeholder}
                             color={item.color}
+                            value={item?.value}
+                            setValue={item?.setValue}
                         />
                     )}
                     keyExtractor={(item, i) => i.toString()}
