@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.anastassow.server.dto.PlantsDto;
-import com.anastassow.server.dto.UserDto;
-import com.anastassow.server.models.Plants;
 import com.anastassow.server.service.PlantsService;
 import com.anastassow.server.service.UserService;
 
